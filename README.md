@@ -49,6 +49,7 @@ valid = /YOUR/PATH/val_list.txt
 names = /YOUR/PATH/names.names
 backup = backup
 ```
+Then create a folder named 'backup'.
 put the yolov4-tiny-digit.config and yolov4-tiny-digit_best.weights under the darknet folder  
 ## Training
 ```
