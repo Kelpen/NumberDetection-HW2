@@ -11,7 +11,7 @@ dn.set_gpu(0)
 classes = [str(i) for i in range(10)]
 
 print('load net')
-net = dn.load_net(b"cfg/yolov4-tiny-digit.cfg", b"weights/yolov4-tiny-digit_best.weights", 0)
+net = dn.load_net(b"yolov4-tiny-digit.cfg", b"yolov4-tiny-digit_best.weights", 0)
 
 # cv2 image to darknet_image
 def array_to_image(arr):
@@ -25,23 +25,17 @@ def array_to_image(arr):
 
 
 # convert image format
-print('start_to_convert_images')
+print('start_to_load_images')
 dark_image_list = []
-'''
-for img_data in test_list:
-  # img_name, img_cv = img_data
-  img_dn = array_to_image(img_data)
-  dark_image_list.append(img_dn)
-'''
+
 for index in range(13068):
-  img_dn = dn.load_image(b'../../Downloads/test/%d.png' % (index+1), 0, 0)
+  img_dn = dn.load_image(b'YOUR/PATH/test/%d.png' % (index+1), 0, 0)
   dark_image_list.append(img_dn)
 # detect
 r_list = []  # results
 for img_dn in tqdm(dark_image_list):
   r = dn.detect_image(net, classes, img_dn, thresh=0.2)
   r_list.append(r)
-# print(r_list[:100])
 
 final_output = []
 for i in range(13068):
@@ -49,9 +43,8 @@ for i in range(13068):
   bboxes = []
   scores = []
   labels = []
-  # img_cv = cv2.imread('../../Downloads/test/%d.png' % (i+1))
+  
   for det in pred:
-    # print(det)
     x, y, w, h = det[2]
     x1 = int(x-w/2)
     x2 = int(x+w/2)
@@ -65,9 +58,3 @@ for i in range(13068):
 
 with open('result.json', 'w') as output_file:
   json.dump(final_output, output_file)
-
-'''
-    img_cv = cv2.rectangle(img_cv, (x1, y1), (x2, y2), (255, 0, 0))
-  print()
-  cv2.imwrite('results/%d.png' % i, img_cv)
-'''

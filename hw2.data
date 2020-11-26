@@ -1,5 +1,5 @@
 classes = 10
-train = /home/gpl/Dataset/HW2/train.txt
-valid = /home/gpl/Dataset/HW2/val.txt
-names = /home/gpl/Dataset/HW2/names.names
-backup = backup_v4_tiny2
+train = /YOUR/PATH/train_list.txt
+valid = /YOUR/PATH/val_list.txt
+names = /YOUR/PATH/names.names
+backup = backup
