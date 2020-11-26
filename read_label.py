@@ -79,7 +79,7 @@ def img_boundingbox_data_constructor(mat_file):
 
 def construct_all_data(img_folder,mat_file_name,h5_name):
     img_bbox_data = img_boundingbox_data_constructor(os.path.join(img_folder,mat_file_name))
-    img_bbox_data.to_csv('label.csv')
+    img_bbox_data.to_csv('label.csv', index=False)
     
 construct_all_data(train_folder,'digitStruct.mat','train_data_processed.h5')
 
