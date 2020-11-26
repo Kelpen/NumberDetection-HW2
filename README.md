@@ -1,6 +1,11 @@
 # NumberDetection-HW2
 ## Dataset
-First, extract the train and test data and run the following scripts.
+First, extract the train and test data.  
+Modify the DATA_ROOT in generate_data_list.py to current folder.
+```
+DATA_ROOT = '/YOUR/PATH'
+```
+Run the following scripts.
 ```
 python3 read_label.py
 python3 transform_to_yolov4.py
