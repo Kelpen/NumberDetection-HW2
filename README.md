@@ -47,7 +47,7 @@ backup = backup
 put the yolov4-tiny-digit.config and yolov4-tiny-digit_best.weights under the darknet folder  
 ## Training
 ```
-./darknet detector train hw2.data yolov4-tiny-digit.config yolov4-tiny.conv.29 -map
+./darknet detector train hw2.data yolov4-tiny-digit.cfg yolov4-tiny.conv.29 -map
 ```
 ## Testing
 Modify the 32th line in YOLOv4_inferences.py
