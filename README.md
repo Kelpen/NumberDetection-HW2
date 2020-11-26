@@ -1,11 +1,21 @@
 # NumberDetection-HW2
+## Dataset
+First, extract the train and test data and run the following scripts.
+```
+python3 read_label.py
+python3 transform_to_yolov4.py
+python3 generate_data_list.py
+```
+
 ## YOLOv4
 Download the YOLOv4
 ```
 git clone https://github.com/AlexeyAB/darknet
-cd clone
+cd darknet
 ```
-Set up the Makefile
+download pretrained model at 
+https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.conv.29  
+Set up the Makefile  
 Modify the following lines
 ```
 GPU=1
@@ -24,3 +34,27 @@ According to your gpus, the ARCH should be set. My environment is RTX 2060, so t
 ARCH= -gencode arch=compute_75,code=[sm_75,compute_75]
 ```
 Then use make to compile the darknet
+
+## Setup Configs
+create a hw2.data with following contents
+```
+classes = 10
+train = /YOUR/PATH/train_list.txt
+valid = /YOUR/PATH/val_list.txt
+names = /YOUR/PATH/names.names
+backup = backup
+```
+put the yolov4-tiny-digit.config and yolov4-tiny-digit_best.weights under the darknet folder  
+## Training
+```
+./darknet detector train hw2.data yolov4-tiny-digit.config yolov4-tiny.conv.29 -map
+```
+## Testing
+Modify the 32th line in YOLOv4_inferences.py
+```
+img_dn = dn.load_image(b'YOUR/PATH/test/%d.png' % (index+1), 0, 0)
+```
+Then run the inference script. The result will save into result.json
+```
+python3 YOLOv4_inferences.py
+```
