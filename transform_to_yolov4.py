@@ -3,7 +3,7 @@ import cv2
 from tqdm import tqdm
 
 # ['height', 'img_name', 'label', 'left', 'top', 'width', 'bottom', 'right']
-with open('data.csv') as f:
+with open('label.csv') as f:
     rows = csv.reader(f)
     next(rows)
     for label in tqdm(rows):
